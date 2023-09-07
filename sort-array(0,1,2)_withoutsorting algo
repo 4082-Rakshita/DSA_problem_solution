@@ -1,0 +1,33 @@
+// Dutch national flag algorithm
+void sort012(int a[], int n)
+    {
+        // code here 
+        int low = 0;
+    int mid = 0;
+    int high = n - 1;
+
+
+        
+        while (mid <= high)
+    {
+        if (a[mid] == 0)
+        {
+            std::swap(a[low], a[mid]);
+            low++;
+            mid++;
+        }
+        else if (a[mid] == 1)
+        {
+            mid++;
+        }
+        else // a[mid] == 2
+        {
+            std::swap(a[mid], a[high]);
+            high--;
+        }
+    }
+    
+    for(int i=0;i<n;i++){
+        cout<<a[i]<<" ";
+    }
+    }
