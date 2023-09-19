@@ -1,0 +1,26 @@
+class Solution
+{
+    public:
+    //Function to find position of first set bit in the given number.
+    unsigned int getFirstSetBit(int n)
+    {
+        // Your code here
+          int pos = 1;
+         if (n == 0) // for num==0 there is zero set bit
+    {
+        return 0;
+    }
+    else {
+      
+        
+        for (int i = 0; i < 32; i++) {
+            if (!(n & (1 << i)))
+                pos++;
+            else
+                break;
+        }
+      
+    }
+    return pos;
+
+    }
