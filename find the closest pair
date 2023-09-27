@@ -1,0 +1,32 @@
+class Solution{
+  public:
+   vector<int> printClosest(int arr[], int brr[], int n, int m, int x) {
+    vector<int> v;
+    int closestDiff = INT_MAX;
+    int i = 0, j = m - 1; // Initialize pointers for arr and brr
+
+    while (i < n && j >= 0) {
+        int sum = arr[i] + brr[j];
+        int diff = abs(sum - x);
+
+        if (diff < closestDiff) {
+            closestDiff = diff;
+            v.clear();
+            v.push_back(arr[i]);
+            v.push_back(brr[j]);
+        }
+
+        // Move pointers based on the sum
+        if (sum < x) {
+            i++; // Increase the value from arr
+        } else {
+            j--; // Decrease the value from brr
+        }
+    }
+
+    return v;
+}
+
+
+    
+};
