@@ -1,0 +1,35 @@
+//Given an array arr[] of N non-negative integers representing the height of blocks. If width of each block is 1, compute how much water can be trapped between the blocks during the rainy season. 
+
+
+long long trappingWater(int height[], int n) {
+    if (n <= 2) {
+        return 0; // Not enough blocks to trap water
+    }
+
+    int left = 0;
+    int right = n - 1;
+    int leftMax = 0;
+    int rightMax = 0;
+    long long trappedWater = 0; // Change the data type to long long
+
+    while (left < right) {
+        // Update the maximum height encountered on the left side
+        leftMax = std::max(leftMax, height[left]);
+
+        // Update the maximum height encountered on the right side
+        rightMax = std::max(rightMax, height[right]);
+
+        // Calculate the trapped water at the current position
+        if (leftMax < rightMax) {
+            trappedWater += std::max(0, leftMax - height[left]);
+            left++;
+        } else {
+            trappedWater += std::max(0, rightMax - height[right]);
+            right--;
+        }
+    }
+
+    return trappedWater;
+
+
+    }
