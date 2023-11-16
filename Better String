@@ -1,0 +1,43 @@
+//Given a pair of strings of equal lengths, Geek wants to find the better string. The better string is the string having more number of distinct subsequences.
+//If both the strings have equal count of distinct subsequence then return str1.
+
+class Solution {
+  public:
+
+
+int countDistinctSubsequences(const string& s) {
+    const int mod = 1000000007;
+    int n = s.length();
+    vector<int> last_occurrence(256, -1);
+    vector<int> dp(n + 1, 0);
+    dp[0] = 1;
+
+    for (int i = 1; i <= n; ++i) {
+        dp[i] = (2 * dp[i - 1]) % mod;
+
+        if (last_occurrence[s[i - 1]] != -1) {
+            dp[i] = (dp[i] - dp[last_occurrence[s[i - 1]]] + mod) % mod;
+        }
+
+        last_occurrence[s[i - 1]] = i - 1;
+    }
+
+    return dp[n];
+}
+
+string betterString(const string& str1, const string& str2) {
+    int count_str1 = countDistinctSubsequences(str1);
+    int count_str2 = countDistinctSubsequences(str2);
+
+    if (count_str1 == count_str2) {
+        return str1;
+    } else if (count_str1 > count_str2) {
+        return str1;
+    } else {
+        return str2;
+    }
+}
+
+
+
+};
